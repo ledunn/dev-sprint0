@@ -1,6 +1,6 @@
 # Text answers from Week 0
 
-# Name:
+# Name: Lauren Dunn
 
 
 
@@ -12,7 +12,10 @@ Explain what each of the following lines does. Use the terminology you learned f
 	wait_for_user()
 
 Answer:
-
+The first line (line 9) imports the Turtleworld module into swampy. A module is a group or collection of functions.
+The next line (line 10) passes the argument "world" for the parameter "Turtleworld()".
+The following line (11) passes the argument "bob" for the parameter "Turtle". 
+The last line (12) tells the Turtleworld() module to wait for the user to do something.
 
 
 
@@ -22,24 +25,85 @@ These questions pertain to the program you wrote in Week0.
 
 -- What are the arguments of polygon()?  What type is each argument?
 Answer:
+Example:
+def polygon(t, n, length):
+	for i in range (n):
+		fd(t,length)
+		lt(t, 360/n)
+
+polygon(bob, 6, 100)
+
+the polygon function has 3 parameters (t, n, and length). In the above instance, the arguments passed for the parameters are bob=t, 6=n, and 100=length. 6 and 100 are both integers. Is bob a string, or just a variable assignment? Bob is never seen as 'bob' when we use it so it doesn't seem to be a string.
 
 -- What two turtle functions did you use to draw the sides of the polygon?
-Answer:
+Answer:fd(t,length) and lt(t,360/n) were used to draw the sides of the polygon.
 
 -- What are the arguments for polyline?  What type is each argument?
-Answer:
+Answer: I had a lot of trouble with the arc function and with polyline.
 
+def polyline(t, n, length, angle):
+	for i in range(n):
+		fd(t, length)
+		lt(t, angle)
 
+In polyline, the parameters are t, n, length, and angle. 
+Argument examples and types:
+t= bob (string?)
+n=7 (integer)
+length=100 (integer)
+angle=360.0 (float)
 
 
 
 Suppose you wrote a function, center_circle(), that draws a circle of a given radius around the current location of the turtle and restores the turtle to its starting point.
 
 -- What turtle functions would you use to move the turtle from the center to the edge of the circle and get ready to call the original circle() function?
-Answer:
+Answer: 
+You would need the following functions:
+pu, pd
+fd(t, length)
+lt(t,360/n)
+
+def circle(t, n, r):
+	circumfrence=2*math.pi*r
+	length=circumfrence/360
+	for i in range(n):
+		fd(t,length)
+		lt(t, 360/n)
+
+def center_circle(t,n,r):
+	pu(t)
+	lt(t)
+	fd(t,r)
+	lt(t)
+	pd(t)
+	circle(t,n,r)
+	pu(t)
+	lt(t)
+	fd(t, r)
+	
+
+bob.delay=.01
+center_circle(bob,360,50)	
 
 -- Suppose the interface of this function requires the turtle to end up in the same place it started, facing in the same direction it started.
-Answer:
+Answer:def center_circle(t,n,r):
+	pu(t)
+	lt(t)
+	fd(t,r)
+	lt(t)
+	pd(t)
+	circle(t,n,r)
+	pu(t)
+	lt(t)
+	fd(t, r)
+	lt(t)
 
 -- What is this type of requirement called?
-Answer:
+Answer: Not sure. Could you make this a loop to simplify it?
+Example: 
+for i in range(n):
+	pu(t)
+	lt(t)
+	fd(t,r)
+	lt(t)
